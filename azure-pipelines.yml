@@ -309,21 +309,21 @@ jobs:
 
         New-Item -Path './src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-x64/publish/kubectl/win' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/windows/amd64/kubectl.exe -OutFile ./src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-x64/publish/kubectl/win/kubectl.exe
+        curl https://dl.k8s.io/release/v1.33.0/bin/windows/amd64/kubectl.exe -OutFile ./src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-x64/publish/kubectl/win/kubectl.exe
 
 
         New-Item -Path './src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-x64/publish/kubectl' -ItemType Directory
 
         New-Item -Path './src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-x64/publish/kubectl/osx' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/darwin/amd64/kubectl  -OutFile ./src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-x64/publish/kubectl/osx/kubectl
+        curl https://dl.k8s.io/release/v1.33.0/bin/darwin/amd64/kubectl  -OutFile ./src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-x64/publish/kubectl/osx/kubectl
 
 
         New-Item -Path './src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-x64/publish/kubectl' -ItemType Directory
 
         New-Item -Path './src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-x64/publish/kubectl/linux' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/linux/amd64/kubectl  -OutFile ./src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-x64/publish/kubectl/linux/kubectl
+        curl https://dl.k8s.io/release/v1.33.0/bin/linux/amd64/kubectl  -OutFile ./src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-x64/publish/kubectl/linux/kubectl
   - task: PowerShell@2
     displayName: Download kubectl for arm64
     continueOnError: True
@@ -334,21 +334,21 @@ jobs:
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-arm64/publish/kubectl/win' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/windows/arm64/kubectl.exe -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-arm64/publish/kubectl/win/kubectl.exe
+        curl https://dl.k8s.io/release/v1.33.0/bin/windows/arm64/kubectl.exe -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-arm64/publish/kubectl/win/kubectl.exe
 
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-arm64/publish/kubectl' -ItemType Directory
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-arm64/publish/kubectl/osx' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/darwin/arm64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-arm64/publish/kubectl/osx/kubectl
+        curl https://dl.k8s.io/release/v1.33.0/bin/darwin/arm64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-arm64/publish/kubectl/osx/kubectl
 
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-arm64/publish/kubectl' -ItemType Directory
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-arm64/publish/kubectl/linux' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/linux/arm64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-arm64/publish/kubectl/linux/kubectl
+        curl https://dl.k8s.io/release/v1.33.0/bin/linux/arm64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-arm64/publish/kubectl/linux/kubectl
   - task: VSBuild@1
     name: ''
     displayName: Sign Files
@@ -960,21 +960,21 @@ jobs:
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-x64/publish/kubectl/win' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/windows/amd64/kubectl.exe -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-x64/publish/kubectl/win/kubectl.exe
+        curl https://dl.k8s.io/release/v1.33.0/bin/windows/amd64/kubectl.exe -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-x64/publish/kubectl/win/kubectl.exe
 
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-x64/publish/kubectl' -ItemType Directory
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-x64/publish/kubectl/osx' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/darwin/amd64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-x64/publish/kubectl/osx/kubectl
+        curl https://dl.k8s.io/release/v1.33.0/bin/darwin/amd64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-x64/publish/kubectl/osx/kubectl
 
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-x64/publish/kubectl' -ItemType Directory
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-x64/publish/kubectl/linux' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/linux/amd64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-x64/publish/kubectl/linux/kubectl
+        curl https://dl.k8s.io/release/v1.33.0/bin/linux/amd64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-x64/publish/kubectl/linux/kubectl
   - task: PowerShell@2
     displayName: Download kubectl for arm64
     continueOnError: True
@@ -985,14 +985,14 @@ jobs:
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-arm64/publish/kubectl/win' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/windows/arm64/kubectl.exe -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-arm64/publish/kubectl/win/kubectl.exe
+        curl https://dl.k8s.io/release/v1.33.0/bin/windows/arm64/kubectl.exe -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/win-arm64/publish/kubectl/win/kubectl.exe
 
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-arm64/publish/kubectl' -ItemType Directory
 
         New-Item -Path '$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-arm64/publish/kubectl/linux' -ItemType Directory
 
-        curl https://dl.k8s.io/release/v1.27.3/bin/linux/arm64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-arm64/publish/kubectl/linux/kubectl
+        curl https://dl.k8s.io/release/v1.33.0/bin/linux/arm64/kubectl  -OutFile $(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/linux-arm64/publish/kubectl/linux/kubectl
   - task: VSBuild@1
     displayName: Sign Files
     enabled: True
@@ -1331,7 +1331,7 @@ jobs:
       targetType: 'inline'
       script: |
         mkdir -p "$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-arm64/publish/kubectl/osx"
-        curl -L https://dl.k8s.io/release/v1.27.3/bin/darwin/arm64/kubectl -o "$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-arm64/publish/kubectl/osx/kubectl"
+        curl -L https://dl.k8s.io/release/v1.33.0/bin/darwin/arm64/kubectl -o "$(Build.SourcesDirectory)/src/dsc/bin/${{ parameters.BuildConfiguration }}/$(BuildParameters.dotnetversionforbuild)/osx-arm64/publish/kubectl/osx/kubectl"
 
   - task: Bash@3
     displayName: code sign for OSX arm64

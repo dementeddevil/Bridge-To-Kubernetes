@@ -15,22 +15,22 @@ jobs:
         mode: [osx-x64,linux-x64,win-x64,win-arm64,osx-arm64,linux-arm64]
         include:
           - mode: osx-x64
-            kubectlUrl: 'https://dl.k8s.io/release/v1.27.3/bin/darwin/amd64/kubectl'
+            kubectlUrl: 'https://dl.k8s.io/release/v1.33.0/bin/darwin/amd64/kubectl'
             kubectlPath: 'osx\kubectl'
           - mode: linux-x64
-            kubectlUrl: 'https://dl.k8s.io/release/v1.27.3/bin/linux/amd64/kubectl'
+            kubectlUrl: 'https://dl.k8s.io/release/v1.33.0/bin/linux/amd64/kubectl'
             kubectlPath: 'linux\kubectl'
           - mode: win-x64
-            kubectlUrl: 'https://dl.k8s.io/release/v1.27.3/bin/windows/amd64/kubectl.exe'
+            kubectlUrl: 'https://dl.k8s.io/release/v1.33.0/bin/windows/amd64/kubectl.exe'
             kubectlPath: 'win\kubectl.exe'
           - mode: win-arm64
-            kubectlUrl: 'https://dl.k8s.io/release/v1.27.3/bin/windows/arm64/kubectl.exe'
+            kubectlUrl: 'https://dl.k8s.io/release/v1.33.0/bin/windows/arm64/kubectl.exe'
             kubectlPath: 'win\kubectl.exe'
           - mode: osx-arm64
-            kubectlUrl: 'https://dl.k8s.io/release/v1.27.3/bin/darwin/arm64/kubectl'
+            kubectlUrl: 'https://dl.k8s.io/release/v1.33.0/bin/darwin/arm64/kubectl'
             kubectlPath: 'osx\kubectl'
           - mode: linux-arm64
-            kubectlUrl: 'https://dl.k8s.io/release/v1.27.3/bin/linux/arm64/kubectl'
+            kubectlUrl: 'https://dl.k8s.io/release/v1.33.0/bin/linux/arm64/kubectl'
             kubectlPath: 'linux\kubectl'
     steps:
     - name: Harden Runner
