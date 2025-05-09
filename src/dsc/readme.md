@@ -66,7 +66,7 @@ Running/Debugging
 dotnet publish src\dsc\dsc.csproj -r win-x64
 ```
  
-**TIP:** Add `src\dsc\bin\Debug\net7.0\win-x64\publish` to your system's PATH environment variable to run the `dsc` from any directory on the command prompt.  
+**TIP:** Add `src\dsc\bin\Debug\net9.0\win-x64\publish` to your system's PATH environment variable to run the `dsc` from any directory on the command prompt.  
 
 **Debugging:** 
 
