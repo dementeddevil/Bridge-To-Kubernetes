@@ -150,7 +150,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void Cloned_Pod_Contains_One_Set_Of_Env_Variables()
+        public async Task Cloned_Pod_Contains_One_Set_Of_Env_Variables()
         {
             Setup();
             ILocalProcessConfig localProcessConfig = null;
@@ -162,7 +162,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void Stateful_Clone_Should_Work()
+        public async Task Stateful_Clone_Should_Work()
         {
             SetUpForStateful();
             ILocalProcessConfig localProcessConfig = null;
@@ -180,7 +180,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void Feature_LifecycleHooks_Disabled_Should_Remove_Lifecycle()
+        public async Task Feature_LifecycleHooks_Disabled_Should_Remove_Lifecycle()
         {
             // Setup
             Setup();
@@ -218,7 +218,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void Feature_LifecycleHooks_Enabled_Should_Not_Remove_Lifecycle()
+        public async Task Feature_LifecycleHooks_Enabled_Should_Not_Remove_Lifecycle()
         {
             // Setup
             Setup();
@@ -256,7 +256,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void Feature_Probes_Disabled_Should_Remove_Probes()
+        public async Task Feature_Probes_Disabled_Should_Remove_Probes()
         {
             // Setup
             Setup();
@@ -302,7 +302,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void Feature_Probes_Enabled_Should_Not_Remove_Probes()
+        public async Task Feature_Probes_Enabled_Should_Not_Remove_Probes()
         {
             // Setup
             Setup();

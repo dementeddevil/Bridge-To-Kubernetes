@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
 using FakeItEasy;
 using k8s.Models;
@@ -26,7 +27,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
 
         public PortMappingManagerTest()
         {
-            var remoteContainerConnectionDetails = new AsyncLazy<RemoteContainerConnectionDetails>(async () => _autoFake.Resolve<RemoteContainerConnectionDetails>());
+            var remoteContainerConnectionDetails = new AsyncLazy<RemoteContainerConnectionDetails>(() => _autoFake.Resolve<RemoteContainerConnectionDetails>());
             _workloadInformationProvider = _autoFake.Resolve<WorkloadInformationProvider>(TypedParameter.From(remoteContainerConnectionDetails));
             A.CallTo(() => _autoFake.Resolve<IPlatform>().IsOSX).Returns(true);
             _portMappingManager = _autoFake.Resolve<PortMappingManager>();
@@ -37,7 +38,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         [InlineData(5, 20)]
         [InlineData(10, 3)]
         [InlineData(1, 3)]
-        public async void GetRemoteToFreeLocalPortMappings_HeadlessService(int numServices, int numAddresses)
+        public async Task GetRemoteToFreeLocalPortMappings_HeadlessService(int numServices, int numAddresses)
         {
             // Set up
             ConfigureHeadlessService(numServices: numServices, namingFunction: (i) => $"myapp-{i}", numAddresses: numAddresses, addressHostNamingFunction: (i) => $"Host-{i}");

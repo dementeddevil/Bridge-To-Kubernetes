@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
 using FakeItEasy;
 using k8s.Models;
@@ -25,7 +26,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
 
         public WorkloadInformationProviderTests()
         {
-            var remoteContainerConnectionDetails = new AsyncLazy<RemoteContainerConnectionDetails>(async () => _autoFake.Resolve<RemoteContainerConnectionDetails>());
+            var remoteContainerConnectionDetails = new AsyncLazy<RemoteContainerConnectionDetails>(() => _autoFake.Resolve<RemoteContainerConnectionDetails>());
             _workloadInformationProvider = _autoFake.Resolve<WorkloadInformationProvider>(TypedParameter.From(remoteContainerConnectionDetails));
         }
 
@@ -34,7 +35,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         [InlineData(5, 20, false)]
         [InlineData(10, 3, true)]
         [InlineData(2, 3, false)]
-        public async void GetReachableServicesAsync_HeadlessService(int numServices, int numAddresses, bool isInWorkloadNamespace)
+        public async Task GetReachableServicesAsync_HeadlessService(int numServices, int numAddresses, bool isInWorkloadNamespace)
         {
             List<string> expectedDnsList = ConfigureHeadlessService(numServices: numServices, namingFunction: (i) => $"myapp-{i}", numAddresses: numAddresses, addressHostNamingFunction: (i) => $"Host-{i}", isInWorkloadNamespace);
             var resultRechableEndpoints = await _workloadInformationProvider.GetReachableEndpointsAsync(namespaceName: isInWorkloadNamespace ? "testNamespace" : "", localProcessConfig: null, includeSameNamespaceServices: true, cancellationToken: default(CancellationToken));
@@ -60,7 +61,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
 
         [Theory]
         [InlineData(1)]
-        public async void GetReachableServicesAsync_PortsToIgnore_HeadlessService(int numAddresses)
+        public async Task GetReachableServicesAsync_PortsToIgnore_HeadlessService(int numAddresses)
         { 
             // Create two services and specify their ports to ignore and ports to use
             Dictionary<string, string> ignorePorts = new Dictionary<string, string>();
@@ -99,7 +100,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
 
         [Theory]
         [InlineData(1)]
-        public async void GetReachableServicesAsync_PortsToIgnore_Service(int numAddresses)
+        public async Task GetReachableServicesAsync_PortsToIgnore_Service(int numAddresses)
         { 
             // Create two services and specify their ports to ignore and ports to use
             Dictionary<string, string> ignorePorts = new Dictionary<string, string>();
@@ -138,7 +139,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
 
         [Theory]
         [InlineData(1)]
-        public async void GetReachableServicesAsync_NoPortsToIgnore_HeadlessService(int numAddresses) 
+        public async Task GetReachableServicesAsync_NoPortsToIgnore_HeadlessService(int numAddresses) 
         {
             Dictionary<string, string> ignorePorts = new Dictionary<string, string>();
             ignorePorts.Add("ServiceA", null);
@@ -175,7 +176,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
 
         [Theory]
         [InlineData(1)]
-        public async void GetReachableServicesAsync_NoPortsToIgnore_Service(int numAddresses) 
+        public async Task GetReachableServicesAsync_NoPortsToIgnore_Service(int numAddresses) 
         {
             Dictionary<string, string> ignorePorts = new Dictionary<string, string>();
             ignorePorts.Add("ServiceA", null);
@@ -212,7 +213,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
 
         [Theory]
         [InlineData(1)]
-        public async void GetReachableServicesAsync_NoPortsToIgnore_NodePortService(int numAddresses) 
+        public async Task GetReachableServicesAsync_NoPortsToIgnore_NodePortService(int numAddresses) 
         {
             Dictionary<string, string> ignorePorts = new Dictionary<string, string>();
             ignorePorts.Add("ServiceA", null);
@@ -249,7 +250,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
 
         [Theory]
         [InlineData(1)]
-        public async void GetReachableServicesAsync_PortsToIgnoreIncorrectFormat_HeadlessService(int numAddresses) {
+        public async Task GetReachableServicesAsync_PortsToIgnoreIncorrectFormat_HeadlessService(int numAddresses) {
             Dictionary<string, string> ignorePorts = new Dictionary<string, string>();
             ignorePorts.Add("ServiceA", "19o, abc");
             ConfigureServiceWithIgnorePorts(isHeadLessService: true, numAddresses, ignorePorts);
@@ -258,7 +259,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
 
         [Theory]
         [InlineData(1)]
-        public async void GetReachableServicesAsync_PortsToIgnoreIncorrectFormat_Service(int numAddresses) {
+        public async Task GetReachableServicesAsync_PortsToIgnoreIncorrectFormat_Service(int numAddresses) {
             Dictionary<string, string> ignorePorts = new Dictionary<string, string>();
             ignorePorts.Add("ServiceA", "19o, abc");
             ConfigureServiceWithIgnorePorts(isHeadLessService: false, numAddresses, ignorePorts);

@@ -17,6 +17,7 @@ using Microsoft.BridgeToKubernetes.Library.Utilities;
 using Microsoft.BridgeToKubernetes.Library.Models;
 using Microsoft.BridgeToKubernetes.TestHelpers;
 using Xunit;
+using System.Threading.Tasks;
 
 namespace Microsoft.BridgeToKubernetes.Library.Tests
 {
@@ -45,7 +46,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         [InlineData(5, true, "Terminating", "ReplicaSet", "linux")]
         [InlineData(10, true, "Running", "ReplicaSet", "linux")]
         [InlineData(1, false, "Running", "ReplicaSet", "linux")]
-        public async void ResolveConnectionDetails_RestoreCheck(int numServices, bool hasRestore, string phase, string kind, string os)
+        public async Task ResolveConnectionDetails_RestoreCheck(int numServices, bool hasRestore, string phase, string kind, string os)
         {
             // Set up
             TestData testData = new()
@@ -76,7 +77,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void ResolveConnectionDetails_ThrowErrorIfPodFilterConditionFails()
+        public async Task ResolveConnectionDetails_ThrowErrorIfPodFilterConditionFails()
         {
             //set up
             TestData testData = new()
@@ -91,7 +92,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
             try
             {
                 await _remoteContainerConnectionDetailsResolver.ResolveConnectionDetails(RemoteContainerConnectionDetails.ReplacingExistingContainerInService("todo-app", "myapp"), CancellationToken.None);
-                Assert.True(false, "Should have thrown exception");
+                Assert.Fail("Should have thrown exception");
             } catch (Exception e)
             {
                 Assert.Equal("The specified service 'myapp' is not backed by a running pod. To check the status of your pods, you can run 'kubectl get pods --namespace todo-app'.", e.Message);
@@ -99,7 +100,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void ResolveConnectionDetails_ShouldSucceedIfPodFilterConditionPasses()
+        public async Task ResolveConnectionDetails_ShouldSucceedIfPodFilterConditionPasses()
         {
             //set up
             TestData testData = new()
@@ -117,7 +118,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void ResolveConnectionDetails_ShouldFailForWindowsContainers()
+        public async Task ResolveConnectionDetails_ShouldFailForWindowsContainers()
         {
             //set up
             TestData testData = new()
@@ -132,7 +133,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
             try
             {
                 await _remoteContainerConnectionDetailsResolver.ResolveConnectionDetails(RemoteContainerConnectionDetails.ReplacingExistingContainerInService("todo-app", "myapp"), CancellationToken.None);
-                Assert.True(false, "Should have thrown exception");
+                Assert.Fail("Should have thrown exception");
             } catch (Exception e)
             {
                 Assert.Equal("The target workload is running on a Windows node. This OS is currently not supported by Bridge To Kubernetes.", e.Message);

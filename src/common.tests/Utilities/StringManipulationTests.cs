@@ -18,7 +18,7 @@ namespace Microsoft.BridgeToKubernetes.Common.Tests.Utilities
         [InlineData("BEGIN PRIVATE KEY\nuirethweuifhewiufhweiuofhweo\njweiorjweoifnewouhfousdgherufhsdiuhEND PRIVATE KEY", "KEY_WAS_REMOVED")]
         public void RemovePrivateKeyIfNeededTest(string input, string expected)
         {
-            Assert.True(string.Equals(StringManipulation.RemovePrivateKeyIfNeeded(input), expected));
+            Assert.Equal(expected, StringManipulation.RemovePrivateKeyIfNeeded(input));
         }
     }
 }

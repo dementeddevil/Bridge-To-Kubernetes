@@ -198,7 +198,14 @@ namespace Microsoft.BridgeToKubernetes.Common.Tests.Kubernetes
         private V1ContainerStatus GetV1ContainerStatus(string containerName, string containerState)
         {
             bool ready = string.Equals(containerState, "running");
-            return new V1ContainerStatus($"{containerName}-imagename", $"{containerName}-imageId", containerName, ready, 0, null, $"{containerName}-ContainerId", state: GetV1ContainerState(containerState));
+            return new V1ContainerStatus(
+                image: $"{containerName}-imagename",
+                imageID: $"{containerName}-imageId",
+                name: containerName,
+                ready: ready,
+                restartCount: 0,
+                containerID: $"{containerName}-ContainerId",
+                state: GetV1ContainerState(containerState));
         }
 
         private V1ContainerState GetV1ContainerState(string status)

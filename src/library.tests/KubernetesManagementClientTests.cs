@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
 using FakeItEasy;
 using k8s.Models;
@@ -78,41 +79,41 @@ users:
         }
 
         [Fact]
-        public void ListNamespacesAsync()
+        public async Task ListNamespacesAsync()
         {
             var expectedSpaces = new List<string> { "namespace1", "namespace2" };
             A.CallTo(() => _autoFake.Resolve<IKubernetesClient>().ListNamespacesAsync(default, default)).WithAnyArguments().Returns(new V1NamespaceList(_sampleV1Namespaces));
-            var resultSpaces = _kubeManagementClient.ListNamespacesAsync(cancellationToken: default).Result;
+            var resultSpaces = await _kubeManagementClient.ListNamespacesAsync(cancellationToken: default);
 
             Assert.Equal(expectedSpaces.OrderBy(x => x), resultSpaces.Value.OrderBy(x => x));
         }
 
         [Fact]
-        public void ListNamespacesAsyncExcludeRestricted()
+        public async Task ListNamespacesAsyncExcludeRestricted()
         {
             _sampleV1Namespaces.Add(new V1Namespace() { Metadata = new V1ObjectMeta() { Name = "azure-system" } });
             var expectedSpaces = new List<string> { "namespace1", "namespace2" };
 
             A.CallTo(() => _autoFake.Resolve<IKubernetesClient>().ListNamespacesAsync(default, default)).WithAnyArguments().Returns(new V1NamespaceList(_sampleV1Namespaces));
-            var resultSpaces = _kubeManagementClient.ListNamespacesAsync(cancellationToken: default, excludeReservedNamespaces: true).Result;
+            var resultSpaces = await _kubeManagementClient.ListNamespacesAsync(cancellationToken: default, excludeReservedNamespaces: true);
 
             Assert.Equal(expectedSpaces.OrderBy(x => x), resultSpaces.Value.OrderBy(x => x));
         }
 
         [Fact]
-        public void ListNamespacesAsyncIncludeRestricted()
+        public async Task ListNamespacesAsyncIncludeRestricted()
         {
             _sampleV1Namespaces.Add(new V1Namespace() { Metadata = new V1ObjectMeta() { Name = "azure-system" } });
             var expectedSpaces = new List<string> { "namespace1", "namespace2", "azure-system" };
 
             A.CallTo(() => _autoFake.Resolve<IKubernetesClient>().ListNamespacesAsync(default, default)).WithAnyArguments().Returns(new V1NamespaceList(_sampleV1Namespaces));
-            var resultSpaces = _kubeManagementClient.ListNamespacesAsync(cancellationToken: default, excludeReservedNamespaces: false).Result;
+            var resultSpaces = await _kubeManagementClient.ListNamespacesAsync(cancellationToken: default, excludeReservedNamespaces: false);
 
             Assert.Equal(expectedSpaces.OrderBy(x => x), resultSpaces.Value.OrderBy(x => x));
         }
 
         [Fact]
-        public async void ListPublicUrlsAsync()
+        public async Task ListPublicUrlsAsync()
         {
             var ingress1 = new V1Ingress
             {
@@ -259,7 +260,7 @@ users:
         }
 
         [Fact]
-        public async void ListPublicUrlsAsync_DockerDesktop()
+        public async Task ListPublicUrlsAsync_DockerDesktop()
         {
             var lb1 = new V1Service
             {
@@ -321,7 +322,7 @@ users:
         }
 
         [Fact]
-        public async void ListPublicUrls_NullRef_EmptyPathAsync()
+        public async Task ListPublicUrls_NullRef_EmptyPathAsync()
         {
             var ingress1 = new V1Ingress
             {

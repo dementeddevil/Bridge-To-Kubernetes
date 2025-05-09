@@ -5,6 +5,7 @@
 
 using System.Collections.Generic;
 using System.Threading;
+using System.Threading.Tasks;
 using Autofac;
 using FakeItEasy;
 using k8s.Models;
@@ -27,7 +28,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void GetValidationError_Positive()
+        public async Task GetValidationError_Positive()
         {
             var ingress1 = new V1Ingress
             {
@@ -85,7 +86,7 @@ namespace Microsoft.BridgeToKubernetes.Library.Tests
         }
 
         [Fact]
-        public async void GetValidationError_Negative()
+        public async Task GetValidationError_Negative()
         {
             var host = new string('b', Constants.Https.LetsEncryptMaxDomainLength + 1);
             var ingress1 = new V1Ingress
