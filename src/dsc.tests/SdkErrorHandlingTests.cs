@@ -57,10 +57,10 @@ namespace Microsoft.BridgeToKubernetes.Exe.Tests
                 .MustHaveHappenedOnceExactly();
             A.CallTo(() => _autoFake.Resolve<IConsoleOutput>().Error(A<string>.That.Not.IsEqualTo(message), A<bool>._))
                 .MustNotHaveHappened();
-            Assert.Empty(Fake.GetCalls(_autoFake.Resolve<IConsoleOutput>()).Where(c => c.Method.Name != nameof(IConsoleOutput.Error)));
+            Assert.DoesNotContain(Fake.GetCalls(_autoFake.Resolve<IConsoleOutput>()), c => c.Method.Name != nameof(IConsoleOutput.Error));
 
             // Ensure only a single log was done
-            Assert.Single(Fake.GetCalls(_autoFake.Resolve<ILog>()).Where(c => c.Method.Name.IsIn(new[] { nameof(ILog.Error), nameof(ILog.Warning) })));
+            Assert.Single(Fake.GetCalls(_autoFake.Resolve<ILog>()), c => c.Method.Name.IsIn(new[] { nameof(ILog.Error), nameof(ILog.Warning) }));
         }
 
         [Fact]

@@ -1008,7 +1008,7 @@ namespace Microsoft.BridgeToKubernetes.Common.Kubernetes
                 result.Add(output.Substring(0, equalIndex), output.Substring(equalIndex + 1));
             };
 
-            var gotEnvSuccessfully = await WebUtilities.RetryUntilTimeWithWaitAsync(async (i) =>
+            var gotEnvSuccessfully = await WebUtilities.RetryUntilTimeWithWaitAsync((i) =>
             {
                 var exitCode = this.RunShortRunningCommand(
                     KubernetesCommandName.GetContainerEnvironment,
@@ -1018,7 +1018,7 @@ namespace Microsoft.BridgeToKubernetes.Common.Kubernetes
                     cancellationToken:cancellationToken);
                 if (exitCode == 0)
                 {
-                    return true;
+                    return Task.FromResult(true);
                 }
 
                 latestError = errorSb.ToString();
@@ -1028,7 +1028,7 @@ namespace Microsoft.BridgeToKubernetes.Common.Kubernetes
                 {
                     // We want to retry if the container isn't in a running state yet.
                     errorSb.Clear();
-                    return false;
+                    return Task.FromResult(false);
                 }
 
                 throw new UserVisibleException(this._operationContext, CommonResources.FailedToGetTheContainerEnvironmentFormat, new PII(containerName), latestError);

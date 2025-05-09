@@ -21,9 +21,9 @@ parameters:
     - Debug
 variables:
 - name: BuildParameters.dotnetversion
-  value: 7.0.x
+  value: 9.0.x
 - name: BuildParameters.dotnetversionforbuild
-  value: net7.0
+  value: net9.0
 - name: BuildParameters.nugetversion
   value: 5.9.x
 - name: RunTests
@@ -53,7 +53,7 @@ jobs:
     fetchTags: false
     persistCredentials: True
   - task: UseDotNet@2
-    displayName: Use .NET Core SDK 7.0.x
+    displayName: Use .NET Core SDK 9.0.x
     enabled: True
     inputs:
       version: $(BuildParameters.dotnetversion)
@@ -242,7 +242,7 @@ jobs:
     fetchTags: false
     persistCredentials: True
   - task: UseDotNet@2
-    displayName: Use .NET Core SDK 7.0.x
+    displayName: Use .NET Core SDK 9.0.x
     enabled: True
     inputs:
       version: $(BuildParameters.dotnetversion)

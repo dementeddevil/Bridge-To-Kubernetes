@@ -8,7 +8,7 @@
 Prerequisites
 -------------
 If you didn't install it already, don't forget to install the Artifact Credential Provider (more info in /src/nugetreadme.md).
-You'll also need to have .NET 7.0 SDK and Runtime installed on your machine.
+You'll also need to have .NET 9.0 SDK and Runtime installed on your machine.
 Finally, before trying to build dsc.exe specifically, you should try to build the whole solution to make sure everything builds as expected:
 - Open src/all.sln in Visual Studio 2019 or 2022
 - Run Build > Rebuild Solution

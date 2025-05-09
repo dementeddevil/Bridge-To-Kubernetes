@@ -97,11 +97,13 @@ namespace Microsoft.BridgeToKubernetes.Common.Kubernetes
             {
                 if (config.ClientCertificateKeyStoreFlags.HasValue)
                 {
-                    cert = new X509Certificate2(cert.Export(X509ContentType.Pkcs12), "", config.ClientCertificateKeyStoreFlags.Value);
+                    cert = X509CertificateLoader.LoadPkcs12(cert.Export(X509ContentType.Pkcs12), string.Empty, config.ClientCertificateKeyStoreFlags.Value);
+                    //cert = new X509Certificate2(cert.Export(X509ContentType.Pkcs12), "", config.ClientCertificateKeyStoreFlags.Value);
                 }
                 else
                 {
-                    cert = new X509Certificate2(cert.Export(X509ContentType.Pkcs12));
+                    cert = X509CertificateLoader.LoadCertificate(cert.Export(X509ContentType.Pkcs12));
+                    //cert = new X509Certificate2(cert.Export(X509ContentType.Pkcs12));
                 }
             }
 

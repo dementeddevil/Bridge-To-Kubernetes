@@ -35,7 +35,9 @@ namespace Microsoft.BridgeToKubernetes.Common.Logging.MacAddressHash
             {
                 SafeRegistryCall(() =>
                 {
+#pragma warning disable CA1416 // Validate platform compatibility
                     result = InterpretRegistryValue(Registry.GetValue(fullKeyName, propertyName, null));
+#pragma warning restore CA1416 // Validate platform compatibility
                 });
             }
 

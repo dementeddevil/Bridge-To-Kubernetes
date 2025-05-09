@@ -46,10 +46,7 @@ namespace Microsoft.BridgeToKubernetes.LocalAgent
             try
             {
                 var stream = connection.GetStream();
-                int streamId = 0;
-
                 byte[] buffer = new byte[BUFFER_SIZE];
-
                 while (true)
                 {
                     int cRead = await stream.ReadAsync(buffer, 0, buffer.Length, CancellationToken.None);
@@ -66,7 +63,7 @@ namespace Microsoft.BridgeToKubernetes.LocalAgent
                     }
                 }
             }
-            catch (Exception ex) { }
+            catch (Exception) { }
         }
     }
 

@@ -193,7 +193,7 @@ namespace Microsoft.BridgeToKubernetes.Common.Logging
                        .As<IOperationContextTelemetryInitializer>()
                        .InstancePerLifetimeScope();
 
-                builder.RegisterType<ApplicationInsightsLoggerConfig>()     // By default, this type gets registered to send AI telemetry which can be disabled via an env variable or providing an expliciting callback function
+                builder.RegisterType<ApplicationInsightsLoggerConfig>()     // By default, this type gets registered to send AI telemetry which can be disabled via an env variable or providing an explicit callback function
                        .As<IApplicationInsightsLoggerConfig>()
                        .IfNotRegistered(typeof(IApplicationInsightsLoggerConfig))
                        .SingleInstance();

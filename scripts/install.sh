@@ -133,12 +133,12 @@ install_tool() {
                     install_dotnet_x64_for_arm
                 else 
                     $PACKAGER tap isen-ng/dotnet-sdk-versions
-                    install_with_sudo dotnet-sdk7-0-300 --cask
+                    install_with_sudo dotnet-sdk-9.0 --cask
                 fi 
             elif [[ $OSTYPE == "linux"* ]]; then
-                install_with_sudo dotnet-sdk-7.0
+                install_with_sudo dotnet-sdk-9.0
             else 
-                install_with_sudo dotnet-7.0-sdk -y
+                install_with_sudo dotnet-9.0-sdk -y
             fi
             ;;
         jq)

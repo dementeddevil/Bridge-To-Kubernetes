@@ -2,7 +2,7 @@
 set -e
 
 # Default values for kubectl version, install location, and architecture
-DEFAULT_KUBECTL_VERSION="v1.27.3"
+DEFAULT_KUBECTL_VERSION="v1.33.0"
 DEFAULT_INSTALL_LOCATION="/app/kubectl/linux"
 DEFAULT_ARCH="amd64"
 
@@ -15,7 +15,7 @@ function install_kubectl {
     arch="${3:-$DEFAULT_ARCH}"
 
     echo "Setting up kubectl $kubectl_version in $install_location with arch $arch"    
-    curl -LO "https://dl.k8s.io/release/$kubectl_version/bin/linux/$arch/kubectl"
+    wget "https://dl.k8s.io/release/$kubectl_version/bin/linux/$arch/kubectl"
     chmod +x kubectl
     mkdir -p "$install_location"
     mv kubectl "$install_location"

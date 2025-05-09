@@ -344,7 +344,9 @@ namespace Microsoft.BridgeToKubernetes.Common.IO
         {
             if (this.IsWindows)
             {
+#pragma warning disable CA1416 // Validate platform compatibility
                 return (0, WindowsIdentity.GetCurrent().Name);
+#pragma warning restore CA1416 // Validate platform compatibility
             }
 
             // For Mac & Linux, run "whoami" to determine current user

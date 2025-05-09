@@ -58,7 +58,6 @@ namespace Microsoft.BridgeToKubernetes.Common.Logging
             HeaderNames.Accept,
             HeaderNames.AcceptEncoding,
             HeaderNames.AcceptLanguage,
-            HeaderNames.Authority,
             HeaderNames.CacheControl,
             HeaderNames.Connection,
             HeaderNames.ContentEncoding,
@@ -68,9 +67,7 @@ namespace Microsoft.BridgeToKubernetes.Common.Logging
             HeaderNames.Date,
             HeaderNames.Host,
             HeaderNames.MaxForwards,
-            HeaderNames.Method,
             HeaderNames.RetryAfter,
-            HeaderNames.Scheme,
             HeaderNames.TransferEncoding,
             HeaderNames.Upgrade,
             HeaderNames.UserAgent

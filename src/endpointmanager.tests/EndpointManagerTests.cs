@@ -91,7 +91,9 @@ namespace Microsoft.BridgeToKubernetes.EndpointManager.Tests
             A.CallTo(() => fakeSocket.AcceptAsync()).MustHaveHappenedTwiceExactly(); // Once for execution, second time to trigger shutdown
             A.CallTo(() => fakeSocket.ReadUntilEndMarkerAsync()).MustHaveHappenedOnceExactly();
             A.CallTo(() => _autoFake.Resolve<IServiceController>().Stop()).MustHaveHappenedOnceExactly();
+#pragma warning disable CA1416 // Validate platform compatibility
             A.CallTo(() => _autoFake.Resolve<IServiceController>().WaitForStatus(A<ServiceControllerStatus>._)).MustHaveHappenedOnceExactly();
+#pragma warning restore CA1416 // Validate platform compatibility
             A.CallTo(() => fakeSocket.SendWithEndMarkerAsync(A<string>._)).MustHaveHappenedTwiceExactly();
             A.CallTo(() => _autoFake.Resolve<IHostsFileManager>().Clear()).MustHaveHappenedOnceExactly();
         }
@@ -111,7 +113,9 @@ namespace Microsoft.BridgeToKubernetes.EndpointManager.Tests
             A.CallTo(() => fakeSocket.AcceptAsync()).MustHaveHappenedTwiceExactly(); // Once for execution, second time to trigger shutdown
             A.CallTo(() => fakeSocket.ReadUntilEndMarkerAsync()).MustHaveHappenedOnceExactly();
             A.CallTo(() => _autoFake.Resolve<IServiceController>().Stop()).MustNotHaveHappened();
+#pragma warning disable CA1416 // Validate platform compatibility
             A.CallTo(() => _autoFake.Resolve<IServiceController>().WaitForStatus(A<ServiceControllerStatus>._)).MustNotHaveHappened();
+#pragma warning restore CA1416 // Validate platform compatibility
             A.CallTo(() => fakeSocket.SendWithEndMarkerAsync(A<string>._)).MustHaveHappenedTwiceExactly();
             A.CallTo(() => _autoFake.Resolve<IHostsFileManager>().Clear()).MustHaveHappenedOnceExactly();
         }

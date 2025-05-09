@@ -346,7 +346,9 @@ namespace Microsoft.BridgeToKubernetes.EndpointManager
                     using (var service = _serviceControllerFactory.Invoke(portMapping.ServiceName))
                     {
                         service.Stop();
+#pragma warning disable CA1416 // Validate platform compatibility
                         service.WaitForStatus(ServiceControllerStatus.Stopped);
+#pragma warning restore CA1416 // Validate platform compatibility
                     }
 
                     if (StringComparer.OrdinalIgnoreCase.Equals(Constants.EndpointManager.KnownProcesses.BranchCacheDisplayName, portMapping.ServiceName))
@@ -413,7 +415,9 @@ namespace Microsoft.BridgeToKubernetes.EndpointManager
         private void SetPathPermissions(string path, CancellationToken cancellationToken)
         {
             _log.Info($"Setting permissions on '{new PII(path)}'");
+#pragma warning disable CA1416 // Validate platform compatibility
             _fileSystem.SetAccessPermissions(path, FileSystemRights.Modify, logCallback: (line) => _log.Verbose(line), cancellationToken, _loggedOnUserName);
+#pragma warning restore CA1416 // Validate platform compatibility
         }
 
         private async Task SendJsonOverSocketAsync(ISocket server, EndpointManagerResult result)

@@ -331,6 +331,7 @@ namespace Microsoft.BridgeToKubernetes.Common.IO
 
                 // Give owner the specified access permissions
                 var userMode = string.Empty;
+#pragma warning disable CA1416 // Validate platform compatibility
                 if ((userAccess & FileSystemRights.Read) != 0)
                 {
                     userMode += "r";
@@ -343,6 +344,7 @@ namespace Microsoft.BridgeToKubernetes.Common.IO
                 {
                     userMode += "x";
                 }
+#pragma warning restore CA1416 // Validate platform compatibility
 
                 // By default, remove all permissions from "group" and "other"
                 var mode = string.IsNullOrEmpty(userMode) ? "go-rwx" : $"go-rwx,u={userMode}";

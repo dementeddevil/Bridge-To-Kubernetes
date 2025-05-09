@@ -38,7 +38,7 @@ namespace Microsoft.BridgeToKubernetes.DevHostAgent.Controllers
             if (System.IO.File.Exists(path))
             {
                 retCode = this.RunTarFile(zipFilePath, path);
-                this.Response.Headers.Add(Constants.HeaderName_DownloadIsFile, "file");
+                this.Response.Headers[Constants.HeaderName_DownloadIsFile] = "file";
             }
             else
             {

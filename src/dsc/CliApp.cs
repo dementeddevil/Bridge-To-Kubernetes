@@ -201,7 +201,9 @@ namespace Microsoft.BridgeToKubernetes.Exe
                 }
 
                 // Capture the initial cursor visibility
+#pragma warning disable CA1416 // Validate platform compatibility
                 resetCursor = Console.CursorVisible;
+#pragma warning restore CA1416 // Validate platform compatibility
 
                 // Setting Console Cursor Visibility to 'false'
                 // not to hinder with any console output

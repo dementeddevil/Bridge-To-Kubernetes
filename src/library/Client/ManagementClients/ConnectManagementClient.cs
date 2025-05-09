@@ -160,7 +160,9 @@ namespace Microsoft.BridgeToKubernetes.Library.ManagementClients
                                 if (processId == 4) // PID 4 is "System"
                                 {
                                     // Check to see if known services are running
+#pragma warning disable CA1416 // Validate platform compatibility
                                     var services = ServiceController.GetServices().Where(s => s.Status == ServiceControllerStatus.Running);
+#pragma warning restore CA1416 // Validate platform compatibility
                                     foreach (var service in services)
                                     {
                                         if (EndpointManager.NonCriticalWindowsPortListeningServices.TryGetValue(service.DisplayName, out int[] ports)
@@ -369,7 +371,7 @@ namespace Microsoft.BridgeToKubernetes.Library.ManagementClients
         public async Task StartServicePortForwardingsAsync(int remoteAgentLocalPort, IEnumerable<EndpointInfo> reachableEndpoints, IEnumerable<PortForwardStartInfo> reversePortForwardInfo, CancellationToken cancellationToken)
         {
             await this._managementClientExceptionStrategy.RunWithHandlingAsync(
-                async () =>
+                () =>
                 {
                     using (var perfLogger = _log.StartPerformanceLogger(
                         Events.ConnectManagementClient.AreaName,
@@ -380,6 +382,7 @@ namespace Microsoft.BridgeToKubernetes.Library.ManagementClients
                         _localEnvironmentManager.StartReversePortForwarding(remoteAgentLocalPort, reversePortForwardInfo, cancellationToken);
                         perfLogger.SetSucceeded();
                     }
+                    return Task.CompletedTask;
                 },
                 new ManagementClientExceptionStrategy.FailureConfig(Resources.FailedToConnectToRemoteAgent));
         }

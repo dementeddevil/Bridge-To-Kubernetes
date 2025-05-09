@@ -7,6 +7,7 @@ using System.ServiceProcess;
 
 namespace Microsoft.BridgeToKubernetes.EndpointManager
 {
+#pragma warning disable CA1416 // Validate platform compatibility
     /// <summary>
     /// <see cref="IServiceController"/>
     /// </summary>
@@ -26,4 +27,5 @@ namespace Microsoft.BridgeToKubernetes.EndpointManager
         public void WaitForStatus(ServiceControllerStatus desiredStatus)
             => _serviceController.WaitForStatus(desiredStatus);
     }
+#pragma warning restore CA1416 // Validate platform compatibility
 }

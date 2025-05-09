@@ -8,20 +8,20 @@ EXPOSE 443
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /src
 COPY ["nuget.config", "."]
-COPY ["LocalAgent/localagent.csproj", "LocalAgent/"]
+COPY ["LocalAgent/LocalAgent.csproj", "LocalAgent/"]
 COPY ["library/library.csproj", "library/"]
 COPY ["common/common.csproj", "common/"]
-RUN dotnet restore "LocalAgent/localagent.csproj"
+RUN dotnet restore "LocalAgent/LocalAgent.csproj"
 COPY . .
 WORKDIR "/src/LocalAgent"
-RUN dotnet build "localagent.csproj" -c Release -o /app/build
+RUN dotnet build "LocalAgent.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "localagent.csproj" -c Release -o /app/publish
+RUN dotnet publish "LocalAgent.csproj" -c Release -o /app/publish
 
 FROM base AS final
 RUN apt-get update
-RUN apt-get install iptables
+#RUN apt-get install iptables
 WORKDIR /app
 COPY --from=publish /app/publish .
 ENTRYPOINT ["dotnet", "Microsoft.BridgeToKubernetes.LocalAgent.dll"]
